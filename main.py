@@ -28,11 +28,15 @@ print(data.info())
 
 # Split the columns to input and output
 y = data['survival_status']
-X = data.drop('survival_status', axis = 1)
-X = X.astype('float32')
+x = data.drop('survival_status', axis = 1)
+x = x.astype('float32')
 
 # Label encode output to 0/1
 y = LabelEncoder().fit_transform(y)
+
+# Transform input data for better classification
+scaler = StandardScaler()
+X = scaler.fit_transform(x)
 
 # Params for LogisticRegression()
 param_grid1 = {
